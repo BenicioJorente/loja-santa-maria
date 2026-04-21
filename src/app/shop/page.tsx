@@ -1,15 +1,4 @@
-"use client";
-
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { useCart } from "@/context/CartContext";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Suspense } from "react";
 
 async function getAllProducts() {
   const res = await fetch(`https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`, {
@@ -18,6 +7,7 @@ async function getAllProducts() {
       "Content-Type": "application/json",
       "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
     },
+    next: { revalidate: 0 },
     body: JSON.stringify({
       query: `
   {
@@ -56,25 +46,42 @@ async function getAllProducts() {
   });
 
   const json = await res.json();
-  return json.data.products.nodes;
+  return json.data?.products?.nodes || [];
 }
+
+export default async function ShopPage() {
+  const products = await getAllProducts();
+
+  return (
+    <Suspense fallback={<div className="text-center py-20 italic text-zinc-400">Carregando coleção...</div>}>
+      <ShopClientContent initialProducts={products} />
+    </Suspense>
+  );
+}
+
+"use client";
+
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const CATEGORIAS = ["Todos", "Festa", "Casual", "Noite"];
 
-// Componente que contém a lógica que usa useSearchParams
-function ShopList() {
-  const [vestidos, setVestidos] = useState<any[]>([]);
+function ShopClientContent({ initialProducts }: { initialProducts: any[] }) {
   const [filtroAtivo, setFiltroAtivo] = useState("Todos");
   const { addToCart } = useCart();
 
   const searchParams = useSearchParams();
   const termoBusca = searchParams.get("q") || "";
 
-  useEffect(() => {
-    getAllProducts().then(setVestidos).catch(console.error);
-  }, []);
-
-  const vestidosFiltrados = vestidos.filter((item) => {
+  const vestidosFiltrados = initialProducts.filter((item) => {
     const atendeCategoria = filtroAtivo === "Todos" || item.productType === filtroAtivo;
     const atendeBusca = item.title.toLowerCase().includes(termoBusca.toLowerCase());
     return atendeCategoria && atendeBusca;
@@ -109,13 +116,10 @@ function ShopList() {
         </div>
       </div>
 
-      {/* GRID DE PRODUTOS */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
         {vestidosFiltrados.length > 0 ? (
           vestidosFiltrados.map((item) => (
             <div key={item.id} className="group flex flex-col">
-              
-              {/* CONTAINER DA IMAGEM */}
               <div className="relative aspect-2/3 overflow-hidden bg-[#F9F9F9] mb-3">
                 <Swiper
                   modules={[Navigation, Pagination]}
@@ -153,7 +157,6 @@ function ShopList() {
                 </button>
               </div>
 
-              {/* BOTÃO MOBILE */}
               <button
                 onClick={() =>
                   addToCart({
@@ -169,10 +172,7 @@ function ShopList() {
                 Adicionar à Sacola
               </button>
 
-              {/* INFO DO PRODUTO*/}
               <div className="flex flex-col pt-2">
-
-                {/* SELETOR DE CORES */}
                 <div className="flex gap-1.5 mb-2">
                   {Array.from(
                     new Set(
@@ -211,7 +211,6 @@ function ShopList() {
                   }).format(Number(item.priceRange.minVariantPrice.amount))}
                 </p>
               </div>
-
             </div>
           ))
         ) : (
@@ -221,14 +220,5 @@ function ShopList() {
         )}
       </div>
     </div>
-  );
-}
-
-// Exportação principal com Suspense
-export default function ShopPage() {
-  return (
-    <Suspense fallback={<div className="text-center py-20 italic text-zinc-400">Carregando coleção...</div>}>
-      <ShopList />
-    </Suspense>
   );
 }
