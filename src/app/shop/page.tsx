@@ -1,67 +1,6 @@
-import { Suspense } from "react";
-
-async function getAllProducts() {
-  const res = await fetch(`https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
-    },
-    next: { revalidate: 0 },
-    body: JSON.stringify({
-      query: `
-  {
-    products(first: 50) {
-      nodes {
-        id
-        title
-        handle
-        productType
-        priceRange {
-          minVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-        variants(first: 10) {
-          nodes {
-            id
-            title
-            selectedOptions {
-              name
-              value
-            }
-          }
-        }
-        images(first: 5) {
-          nodes {
-            url
-          }
-        }
-      }
-    }
-  }
-`,
-    }),
-  });
-
-  const json = await res.json();
-  return json.data?.products?.nodes || [];
-}
-
-export default async function ShopPage() {
-  const products = await getAllProducts();
-
-  return (
-    <Suspense fallback={<div className="text-center py-20 italic text-zinc-400">Carregando coleção...</div>}>
-      <ShopClientContent initialProducts={products} />
-    </Suspense>
-  );
-}
-
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
@@ -72,14 +11,69 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+// 1. FUNÇÃO DE BUSCA (Mantida no mesmo arquivo)
+async function getAllProducts() {
+  const res = await fetch(`https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
+    },
+    next: { revalidate: 0 },
+    body: JSON.stringify({
+      query: `
+        {
+          products(first: 50) {
+            nodes {
+              id
+              title
+              handle
+              productType
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
+                }
+              }
+              variants(first: 10) {
+                nodes {
+                  id
+                  title
+                  selectedOptions {
+                    name
+                    value
+                  }
+                }
+              }
+              images(first: 5) {
+                nodes {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const json = await res.json();
+  return json.data?.products?.nodes || [];
+}
+
 const CATEGORIAS = ["Todos", "Festa", "Casual", "Noite"];
 
-function ShopClientContent({ initialProducts }: { initialProducts: any[] }) {
+// 2. COMPONENTE DE CONTEÚDO (Lógica cliente)
+function ShopClientContent() {
+  const [initialProducts, setInitialProducts] = useState<any[]>([]);
   const [filtroAtivo, setFiltroAtivo] = useState("Todos");
   const { addToCart } = useCart();
-
   const searchParams = useSearchParams();
   const termoBusca = searchParams.get("q") || "";
+
+  useEffect(() => {
+    getAllProducts().then(setInitialProducts).catch(console.error);
+  }, []);
 
   const vestidosFiltrados = initialProducts.filter((item) => {
     const atendeCategoria = filtroAtivo === "Todos" || item.productType === filtroAtivo;
@@ -104,8 +98,9 @@ function ShopClientContent({ initialProducts }: { initialProducts: any[] }) {
             <button
               key={cat}
               onClick={() => setFiltroAtivo(cat)}
-              className={`text-[10px] uppercase tracking-[0.3em] transition-all duration-300 relative pb-2 ${filtroAtivo === cat ? "text-black font-bold" : "text-zinc-400 hover:text-black"
-                }`}
+              className={`text-[10px] uppercase tracking-[0.3em] transition-all duration-300 relative pb-2 ${
+                filtroAtivo === cat ? "text-black font-bold" : "text-zinc-400 hover:text-black"
+              }`}
             >
               {cat}
               {filtroAtivo === cat && (
@@ -189,9 +184,9 @@ function ShopClientContent({ initialProducts }: { initialProducts: any[] }) {
                       style={{
                         backgroundColor:
                           cor.toLowerCase() === 'preto' ? '#000' :
-                            cor.toLowerCase() === 'branco' ? '#fff' :
-                              cor.toLowerCase() === 'nude' ? '#e3bc9a' :
-                                cor 
+                          cor.toLowerCase() === 'branco' ? '#fff' :
+                          cor.toLowerCase() === 'nude' ? '#e3bc9a' :
+                          cor 
                       }}
                       title={cor}
                     />
@@ -220,5 +215,14 @@ function ShopClientContent({ initialProducts }: { initialProducts: any[] }) {
         )}
       </div>
     </div>
+  );
+}
+
+// 3. EXPORTAÇÃO PRINCIPAL (Envolvida em Suspense para o build)
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 italic text-zinc-400">Carregando coleção...</div>}>
+      <ShopClientContent />
+    </Suspense>
   );
 }
