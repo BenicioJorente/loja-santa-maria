@@ -6,12 +6,12 @@ import { useCart } from "@/context/CartContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 
-
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+// BLOCO 1: BUSCA DE DADOS (SHOPIFY API)
 async function getProducts() {
   const res = await fetch(`https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`, {
     method: "POST",
@@ -58,10 +58,10 @@ async function getProducts() {
   });
 
   const json = await res.json();
-
   return json.data.collection?.products?.nodes || [];
 }
 
+// BLOCO 2: COMPONENTE PRINCIPAL E ESTADO
 export default function Home() {
   const { addToCart } = useCart();
   const [products, setProducts] = useState<any[]>([]);
@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full mt-0 pt-0">
 
-      {/* HERO SECTION */}
+      {/* BLOCO 3: CARROSSEL HERO (BANNER PRINCIPAL) */}
       <section className="relative h-[85vh] w-full overflow-hidden bg-white">
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
@@ -116,7 +116,7 @@ export default function Home() {
         </Swiper>
       </section>
 
-      {/* SECTION VITRINE */}
+      {/* BLOCO 4: VITRINE DE PRODUTOS (GRID) */}
       <section className="pt-8 pb-24 px-8 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6 md:gap-4 text-center md:text-left">
           <div>
@@ -132,6 +132,7 @@ export default function Home() {
           {products.map((prod) => (
             <div key={prod.id} className="group flex flex-col">
 
+              {/* BLOCO 5: CARD DO PRODUTO (IMAGEM E SLIDE INTERNO) */}
               <div className="relative aspect-2/3 overflow-hidden bg-[#F9F9F9] mb-3">
                 <Swiper
                   modules={[Navigation, Pagination]}
@@ -152,6 +153,7 @@ export default function Home() {
                   ))}
                 </Swiper>
 
+                {/* BOTÃO ADICIONAR (DESKTOP) */}
                 <button
                   onClick={() => addToCart({
                     variantId: prod.variants.nodes[0].id,
@@ -166,6 +168,7 @@ export default function Home() {
                 </button>
               </div>
 
+              {/* BOTÃO ADICIONAR (MOBILE) */}
               <button
                 onClick={() => addToCart({
                   variantId: prod.variants.nodes[0].id,
@@ -179,6 +182,7 @@ export default function Home() {
                 Adicionar à Sacola
               </button>
 
+              {/* BLOCO 6: INFORMAÇÕES (CORES, TÍTULO E PREÇO) */}
               <div className="flex flex-col pt-2">
                 <div className="flex gap-1.5 mb-2">
                   {Array.from(
