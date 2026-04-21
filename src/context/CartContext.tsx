@@ -28,7 +28,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Carregar do localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem("santa-maria-cart");
     if (savedCart) {
@@ -40,7 +39,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Salvar no localStorage
   useEffect(() => {
     localStorage.setItem("santa-maria-cart", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -68,14 +66,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCartItems((prev) => prev.filter((item) => item.variantId !== variantId));
   };
 
-  // AJUSTE ITEM 2 & 3: Lógica de atualização atômica e segura
   const updateQuantity = (variantId: string, delta: number) => {
     setCartItems((prev) =>
       prev.map((item) => {
         if (item.variantId === variantId) {
           const newQuantity = item.quantity + delta;
-          // Garante que a quantidade nunca seja menor que 1
-          // Nota: Para estoque máximo, o ideal é receber o 'available' da Shopify no objeto item
           return { ...item, quantity: Math.max(1, newQuantity) };
         }
         return item;
@@ -83,8 +78,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-  // AJUSTE ITEM 3: Otimização de Performance com useMemo
-  // O cálculo só é refeito se o array 'cartItems' realmente mudar
   const cartCount = useMemo(() => {
     return cartItems.reduce((acc, item) => acc + item.quantity, 0);
   }, [cartItems]);

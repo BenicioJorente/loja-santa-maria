@@ -2,52 +2,49 @@ import Link from "next/link";
 
 export default function SobrePage() {
     return (
-        <div className="max-w-6xl mx-auto px-6">
-            {/* SEÇÃO PRINCIPAL - MANTIDA EXATAMENTE COMO ESTÁ */}
-            <section className="flex flex-col md:flex-row items-start gap-10 md:gap-16 pt-20 md:pt-10 pb-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            {/* SEÇÃO PRINCIPAL */}
+            <section className="flex flex-col md:flex-row items-start gap-8 lg:gap-12 pt-16 md:pt-10 pb-12 overflow-hidden">
 
                 {/* IMAGEM */}
-                <div className="w-full md:w-[20%] animate-in fade-in duration-1000">
-                    <div
-                        className="relative overflow-hidden bg-zinc-100 rounded-sm shadow-lg"
-                        style={{ maxHeight: "500px" }}
-                    >
+                <div className="w-full md:w-[50%] animate-in fade-in duration-1000">
+                    <div className="relative overflow-hidden bg-zinc-100 rounded-sm shadow-sm">
                         <img
                             src="/images/loja-santa-maria.png"
                             alt="Santa Maria Atelier"
-                            className="w-full h-full object-cover object-top"
-                            style={{ maxHeight: "500px" }}
+                            className="w-full h-auto object-cover"
+                            style={{ maxHeight: "480px" }}
                         />
                     </div>
                 </div>
 
                 {/* TEXTO À DIREITA */}
-                <div className="w-full md:w-[80%] flex flex-col gap-6">
-                    <header className="space-y-2">
+                <div className="w-full md:w-[50%] flex flex-col gap-3">
+                    <header className="space-y-1">
                         <p className="text-[#8C7355] text-[9px] uppercase tracking-[0.4em] font-bold">
                             Nossa Essência
                         </p>
-                        <h1 className="font-serif text-3xl md:text-5xl italic leading-[1.1] text-[#1A1A1A]">
-                            Onde a tradição encontra o contemporâneo.
+                        <h1 className="font-serif text-2xl md:text-[26px] lg:text-[32px] italic leading-tight text-[#1A1A1A] max-w-full">
+                            Mais do que vestir, é se reconhecer.
                         </h1>
                     </header>
 
-                    <div className="flex flex-col gap-5 text-zinc-600 font-light leading-relaxed text-sm md:text-base max-w-xl">
+                    <div className="flex flex-col gap-3 text-zinc-600 font-light leading-relaxed text-xs lg:text-sm">
                         <p>
-                            Fundado sob o olhar atento à sofisticação, o Santa Maria Atelier nasceu do desejo de
-                            oferecer mais do que vestuário: oferecemos memórias tecidas em fios nobres.
+                            A Santa Maria nasceu do amor pela moda e do desejo de valorizar a beleza única de cada mulher.
+                            Há mais de 10 anos, nos dedicamos a oferecer peças que unem elegância, qualidade e personalidade — sempre acompanhando as tendências, mas sem abrir mão do estilo atemporal.
                         </p>
                         <p>
-                            Cada peça em nossa coleção passa por uma curadoria rigorosa,
-                            priorizando cortes que valorizam a silhueta e um acabamento
-                            artesanal que resiste ao tempo.
+                            Acreditamos que vestir-se vai muito além de roupa: é sobre se sentir confiante, bonita e segura em qualquer ocasião. Por isso, cada peça da nossa loja é escolhida com cuidado, pensando na mulher real, moderna e cheia de atitude.
+                            Aqui, prezamos por um atendimento próximo, acolhedor e verdadeiro. Queremos que cada cliente se sinta especial, como se estivesse sendo atendida por amigas.
+                            Mais do que uma loja, somos um espaço de conexão, estilo e autoestima.
                         </p>
-                        <p className="italic font-serif text-[#1A1A1A] text-xl mt-2">
-                            "A verdadeira elegância não é sobre ser notada, mas sobre ser lembrada."
+                        <p className="italic font-serif text-[#1A1A1A] text-base mt-1">
+                            "Santa Maria - feita para mulheres que sabem o seu valor."
                         </p>
                     </div>
 
-                    <div className="mt-4">
+                    <div className="mt-2">
                         <Link
                             href="/shop"
                             className="inline-block bg-[#1A1A1A] text-white px-8 py-4 text-[9px] uppercase tracking-[0.3em] font-bold hover:bg-[#8C7355] transition-all"
@@ -58,12 +55,12 @@ export default function SobrePage() {
                 </div>
             </section>
 
-            {/* NOVA SEÇÃO DE VISITA - SUBSTITUINDO OS VALORES COM ESPAÇAMENTO MAIOR */}
+            {/* SEÇÃO DE VISITA */}
             <section className="mt-24 py-16 border-t border-zinc-100 flex flex-col md:flex-row justify-between gap-12">
                 <div className="max-w-xs">
-                    <h4 className="font-serif italic text-2xl text-[#1A1A1A] mb-4">Visite nosso Atelier</h4>
+                    <h4 className="font-serif italic text-2xl text-[#1A1A1A] mb-4">Visite nossa loja</h4>
                     <p className="text-zinc-500 text-sm leading-relaxed font-light">
-                        Vivencie a experiência Santa Maria pessoalmente. Atendimento exclusivo e consultoria de estilo em um ambiente acolhedor.
+                        Venha vivenciar a experiência Santa Maria de perto. Um espaço dedicado ao autocuidado e à beleza feminina, onde cada detalhe foi pensado para você se sentir em casa enquanto descobre o que melhor expressa a sua essência.
                     </p>
                 </div>
 
@@ -71,16 +68,16 @@ export default function SobrePage() {
                     <div className="flex flex-col gap-2">
                         <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#8C7355]">Localização</span>
                         <address className="not-italic text-sm text-zinc-600 font-light leading-relaxed">
-                            Rua Exemplo de Luxo, 123<br />
-                            Bairro Elegante<br />
-                            Cidade - UF
+                            Rua Paz, 638<br />
+                            Centro<br />
+                            Campo Grande - MS
                         </address>
                     </div>
 
                     <div className="flex flex-col gap-2">
                         <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#8C7355]">Funcionamento</span>
                         <p className="text-sm text-zinc-600 font-light leading-relaxed">
-                            Segunda a Sexta — 09h às 18h<br />
+                            Segunda a Sexta — 09h às 18h30<br />
                             Sábado — 09h às 13h
                         </p>
                     </div>

@@ -22,19 +22,15 @@ export default function CartDrawer() {
     setIsRedirecting(true);
     
     try {
-      // Extrai os IDs das variantes e monta a URL do checkout
       const itemsParam = cartItems.map(item => {
-        // Extrai o número do ID da variante
         const variantIdNumber = item.variantId?.split('/').pop();
         return `${variantIdNumber}:${item.quantity}`;
       }).join(',');
       
-      // URL direta para o checkout da Shopify
       const checkoutUrl = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/cart/${itemsParam}`;
       
       console.log("🚀 Redirecionando para:", checkoutUrl);
       
-      // Redireciona diretamente
       window.location.href = checkoutUrl;
       
     } catch (error) {
@@ -47,7 +43,7 @@ export default function CartDrawer() {
   if (!isCartOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex justify-end">
+    <div className="fixed inset-0 z-100 flex justify-end">
       <div 
         className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-in fade-in duration-500" 
         onClick={closeCart} 

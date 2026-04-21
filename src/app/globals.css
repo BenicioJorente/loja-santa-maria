@@ -25,19 +25,86 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Ajuste unificado para a logo no mobile */
+/* logo no mobile */
 @media (max-width: 768px) {
   .hero-logo-force {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) scale(1.6) !important; /* Aumentei levemente para ocupar mais espaço */
+    transform: translate(-50%, -50%) scale(1.6) !important; 
     width: auto !important;
     height: auto !important;
     max-width: 95% !important;
     max-height: 90% !important;
     object-fit: contain !important;
-    /* Impede que qualquer "borda" da imagem apareça */
     background-color: transparent !important; 
+  }
+}
+
+/* No globals.css */
+
+.inner-product-swiper .swiper-button-next,
+.inner-product-swiper .swiper-button-prev {
+  color: black;
+  background: rgba(255, 255, 255, 0.7);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+  opacity: 0; 
+  transition: all 0.5s ease;
+}
+
+.inner-product-swiper .swiper-button-next::after,
+.inner-product-swiper .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.group:hover .inner-product-swiper .swiper-button-next,
+.group:hover .inner-product-swiper .swiper-button-prev {
+  opacity: 1;
+}
+
+.inner-product-swiper .swiper-pagination-bullet {
+  background: rgba(0, 0, 0, 0.2);
+  width: 6px;
+  height: 6px;
+  opacity: 1;
+}
+
+.inner-product-swiper .swiper-pagination-bullet-active {
+  background: black;
+  width: 8px; 
+}
+
+/* BARRAS DO CARROSSEL PRINCIPAL  */
+
+/* Estilo das Barras Inativas */
+.custom-hero-swiper .swiper-pagination-hero .swiper-pagination-bullet {
+  width: 40px;          
+  height: 2px;        
+  border-radius: 0;     
+  background: #000;    
+  opacity: 0.2;         
+  transition: all 0.4s ease;
+  cursor: pointer;
+  margin: 0 !important; 
+}
+
+/* Estilo da Barra Ativa */
+.custom-hero-swiper .swiper-pagination-hero .swiper-pagination-bullet-active {
+  opacity: 1;           
+  width: 65px;          
+  background: #000;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+  .custom-hero-swiper .swiper-pagination-hero .swiper-pagination-bullet {
+    width: 25px;
+  }
+  .custom-hero-swiper .swiper-pagination-hero .swiper-pagination-bullet-active {
+    width: 40px;
   }
 }

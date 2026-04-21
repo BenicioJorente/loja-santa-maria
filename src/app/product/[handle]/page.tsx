@@ -74,7 +74,7 @@ export default function ProductPage() {
         <div className="flex flex-col md:flex-row gap-10 lg:gap-16 items-start justify-center">
           
           <div className="w-full md:w-[320px] shrink-0"> 
-            <div className="aspect-[3/4] overflow-hidden bg-zinc-50 border border-zinc-100 shadow-sm">
+            <div className="aspect-3/4 overflow-hidden bg-zinc-50 border border-zinc-100 shadow-sm">
               <img src={images[imagemAtiva]?.url || "/images/placeholder.jpg"} alt={product.title} className="w-full h-full object-cover transition-all duration-700" />
             </div>
             <div className="flex gap-2 mt-4 justify-center md:justify-start">
@@ -92,13 +92,13 @@ export default function ProductPage() {
             <p className="text-lg font-light text-zinc-900 mb-6">
               {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: variant.price.currencyCode }).format(Number(variant.price.amount))}
             </p>
-            <div className="h-[1px] w-full bg-zinc-100 mb-8" />
+            <div className="h-1px w-full bg-zinc-100 mb-8" />
             <p className="text-zinc-500 leading-relaxed text-sm font-light mb-10 italic">{product.description}</p>
 
             <button 
               onClick={() => {
                 addToCart({
-                  variantId: variant.id, // Envia o ID da VARIANTE
+                  variantId: variant.id, 
                   title: product.title,
                   price: variant.price.amount,
                   image: images[0]?.url,
