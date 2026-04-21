@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -62,7 +61,8 @@ async function getAllProducts() {
 
 const CATEGORIAS = ["Todos", "Festa", "Casual", "Noite"];
 
-export default function ShopPage() {
+// Componente que contém a lógica que usa useSearchParams
+function ShopList() {
   const [vestidos, setVestidos] = useState<any[]>([]);
   const [filtroAtivo, setFiltroAtivo] = useState("Todos");
   const { addToCart } = useCart();
@@ -221,5 +221,14 @@ export default function ShopPage() {
         )}
       </div>
     </div>
+  );
+}
+
+// Exportação principal com Suspense
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 italic text-zinc-400">Carregando coleção...</div>}>
+      <ShopList />
+    </Suspense>
   );
 }
