@@ -3,7 +3,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { Suspense } from "react";
-import { Metadata } from "next"; // Importe o tipo Metadata
+import { Metadata } from "next"; 
+import WhatsAppButton from "../components/WhatsAppButton";
 
 // Adicione este bloco de Metadata aqui:
 export const metadata: Metadata = {
@@ -27,6 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
+
+          <WhatsAppButton />
+
         </CartProvider>
       </body>
     </html>
