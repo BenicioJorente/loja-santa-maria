@@ -102,3 +102,36 @@ html, body {
     width: 40px;
   }
 }
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 8s ease-out forwards;
+}
+
+.animate-reveal {
+  opacity: 0; /* Começa invisível */
+  animation: textReveal 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+/* Delay para o botão aparecer depois do texto */
+.delay-500 {
+  animation-delay: 0.5s;
+}
+

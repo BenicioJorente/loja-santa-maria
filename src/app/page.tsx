@@ -78,16 +78,16 @@ export default function Home() {
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
           effect="fade"
-          speed={800}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          speed={1200} // Transição entre slides mais lenta para mais luxo
+          autoplay={{ delay: 5000, disableOnInteraction: false }} // Mais tempo para o zoom agir
           loop={true}
           pagination={{
             clickable: true,
             el: '.swiper-pagination-hero'
           }}
-          navigation={false}
           className="h-full w-full custom-hero-swiper relative"
         >
+          {/* SLIDE 1: LOGO - MANTEMOS ESTÁTICO E LIMPO */}
           <SwiperSlide className="relative w-full h-full flex items-center justify-center bg-white">
             <img
               src="images/hero-santa-maria.png"
@@ -96,20 +96,48 @@ export default function Home() {
             />
           </SwiperSlide>
 
-          <SwiperSlide className="relative w-full h-full">
+          {/* SLIDE 2: MODELO COM ZOOM E REVELAÇÃO */}
+          <SwiperSlide className="relative w-full h-full overflow-hidden">
             <img
               src="images/carrossel2.jpg"
-              className="w-full h-full object-cover object-[center_35%]"
+              className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
               alt="Nova Coleção"
             />
+            <div className="absolute inset-0 z-20 flex items-center justify-start px-10 md:px-24 bg-black/10">
+              <div className="max-w-400px text-left">
+                <div className="animate-reveal">
+                  <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/80 mb-3 font-bold">New In '26</h2>
+                  <p className="text-[28px] md:text-[38px] font-serif italic text-white leading-tight mb-6">Coleção Identity</p>
+                </div>
+                <div className="animate-reveal delay-500">
+                  <Link href="/shop" className="inline-block border-b border-white text-white text-[10px] uppercase tracking-[0.3em] pb-1 hover:opacity-70 transition-all pointer-events-auto">
+                    Explorar Peças
+                  </Link>
+                </div>
+              </div>
+            </div>
           </SwiperSlide>
 
-          <SwiperSlide className="relative w-full h-full">
+          {/* SLIDE 3: MODELO COM ZOOM E REVELAÇÃO */}
+          <SwiperSlide className="relative w-full h-full overflow-hidden">
             <img
               src="images/carrossel3.jpg"
-              className="w-full h-full object-cover object-[center_35%]"
+              className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
               alt="Destaques de Verão"
             />
+            <div className="absolute inset-0 z-20 flex items-center justify-start px-10 md:px-24 bg-black/10">
+              <div className="max-w-400px text-left">
+                <div className="animate-reveal">
+                  <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/80 mb-3 font-bold">Essenciais</h2>
+                  <p className="text-[28px] md:text-[38px] font-serif italic text-white leading-tight mb-6">Leveza em cada detalhe</p>
+                </div>
+                <div className="animate-reveal delay-500">
+                  <Link href="/shop" className="inline-block border-b border-white text-white text-[10px] uppercase tracking-[0.3em] pb-1 hover:opacity-70 transition-all pointer-events-auto">
+                    Ver Coleção
+                  </Link>
+                </div>
+              </div>
+            </div>
           </SwiperSlide>
           
           <div className="swiper-pagination-hero absolute bottom-8 left-0 right-0 z-50 flex justify-center gap-2"></div>
