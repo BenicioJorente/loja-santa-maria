@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-
+/*teste*/
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
