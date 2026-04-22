@@ -74,75 +74,75 @@ export default function Home() {
     <div className="flex flex-col w-full mt-0 pt-0" style={{ backgroundColor: '#FAF9F6', color: '#171717' }}>
 
       {/* BLOCO 3: CARROSSEL HERO */}
-<section className="relative h-[85vh] w-full overflow-hidden bg-white">
-  <Swiper
-    modules={[Autoplay, EffectFade, Pagination]}
-    effect="fade"
-    speed={1200}
-    autoplay={{ delay: 5000, disableOnInteraction: false }}
-    loop={true}
-    pagination={{
-      clickable: true,
-      el: '.swiper-pagination-hero'
-    }}
-    className="h-full w-full custom-hero-swiper relative"
-  >
-    {/* SLIDE 1 */}
-    <SwiperSlide data-swiper-autoplay="2000" className="relative w-full h-full flex items-center justify-center bg-white">
-      <img
-        src="images/hero-santa-maria.png"
-        className="hero-logo-force z-10 md:absolute md:inset-0 md:w-full md:h-full md:object-contain md:p-20"
-        alt="Santa Maria Logo"
-      />
-    </SwiperSlide>
+      <section className="relative h-[85vh] w-full overflow-hidden bg-white">
+        <Swiper
+          modules={[Autoplay, EffectFade, Pagination]}
+          effect="fade"
+          speed={1200}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          loop={true}
+          pagination={{
+            clickable: true,
+            el: '.swiper-pagination-hero'
+          }}
+          className="h-full w-full custom-hero-swiper relative"
+        >
+          {/* SLIDE 1 */}
+          <SwiperSlide data-swiper-autoplay="2000" className="relative w-full h-full flex items-center justify-center bg-white">
+            <img
+              src="images/hero-santa-maria.png"
+              className="hero-logo-force z-10 md:absolute md:inset-0 md:w-full md:h-full md:object-contain md:p-20"
+              alt="Santa Maria Logo"
+            />
+          </SwiperSlide>
 
-    {/* SLIDE 2 */}
-    <SwiperSlide data-swiper-autoplay="5000" className="relative w-full h-full overflow-hidden">
-      <img
-        src="images/carrossel2.jpg"
-        className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
-        alt="Nova Coleção"
-      />
-      <div className="absolute inset-0 z-20 flex items-center justify-start px-10 md:px-24 bg-black/10">
-        <div className="max-w-400px text-left">
-          <div className="animate-reveal">
-            <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/80 mb-3 font-bold">New In '26</h2>
-            <p className="text-[28px] md:text-[38px] font-serif italic text-white leading-tight mb-6">Coleção Identity</p>
-          </div>
-          <div className="animate-reveal delay-500">
-            <Link href="/shop" className="inline-block border-b border-white text-white text-[10px] uppercase tracking-[0.3em] pb-1 hover:opacity-70 transition-all pointer-events-auto">
-              Explorar Peças
-            </Link>
-          </div>
-        </div>
-      </div>
-    </SwiperSlide>
+          {/* SLIDE 2 */}
+          <SwiperSlide data-swiper-autoplay="5000" className="relative w-full h-full overflow-hidden">
+            <img
+              src="images/carrossel2.jpg"
+              className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
+              alt="Nova Coleção"
+            />
+            <div className="absolute inset-0 z-20 flex items-center justify-start px-10 md:px-24 bg-black/10">
+              <div className="max-w-400px text-left">
+                <div className="animate-reveal">
+                  <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/80 mb-3 font-bold">Novidades 2026</h2>
+                  <p className="text-[28px] md:text-[38px] font-serif italic text-white leading-tight mb-6">Detalhes que definem</p>
+                </div>
+                <div className="animate-reveal delay-500">
+                  <Link href="/shop" className="inline-block border-b border-white text-white text-[10px] uppercase tracking-[0.3em] pb-1 hover:opacity-70 transition-all pointer-events-auto">
+                    Explorar Peças
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
 
-    {/* SLIDE 3 */}
-    <SwiperSlide data-swiper-autoplay="5000" className="relative w-full h-full overflow-hidden">
-      <img
-        src="images/carrossel3.jpg"
-        className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
-        alt="Destaques de Verão"
-      />
-      <div className="absolute inset-0 z-20 flex items-center justify-start px-10 md:px-24 bg-black/10">
-        <div className="max-w-400px text-left">
-          <div className="animate-reveal">
-            <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/80 mb-3 font-bold">Essenciais</h2>
-            <p className="text-[28px] md:text-[38px] font-serif italic text-white leading-tight mb-6">Leveza em cada detalhe</p>
-          </div>
-          <div className="animate-reveal delay-500">
-            <Link href="/shop" className="inline-block border-b border-white text-white text-[10px] uppercase tracking-[0.3em] pb-1 hover:opacity-70 transition-all pointer-events-auto">
-              Ver Coleção
-            </Link>
-          </div>
-        </div>
-      </div>
-    </SwiperSlide>
-    
-    <div className="swiper-pagination-hero absolute bottom-8 left-0 right-0 z-50 flex justify-center gap-2"></div>
-  </Swiper>
-</section>
+          {/* SLIDE 3 */}
+          <SwiperSlide data-swiper-autoplay="5000" className="relative w-full h-full overflow-hidden">
+            <img
+              src="images/carrossel3.jpg"
+              className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
+              alt="Destaques de Verão"
+            />
+            <div className="absolute inset-0 z-20 flex items-center justify-start px-10 md:px-24 bg-black/10">
+              <div className="max-w-400px text-left">
+                <div className="animate-reveal">
+                  <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/80 mb-3 font-bold">Essenciais</h2>
+                  <p className="text-[28px] md:text-[38px] font-serif italic text-white leading-tight mb-6">Leveza ao vestir</p>
+                </div>
+                <div className="animate-reveal delay-500">
+                  <Link href="/shop" className="inline-block border-b border-white text-white text-[10px] uppercase tracking-[0.3em] pb-1 hover:opacity-70 transition-all pointer-events-auto">
+                    Ver Coleção
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          <div className="swiper-pagination-hero absolute bottom-8 left-0 right-0 z-50 flex justify-center gap-2"></div>
+        </Swiper>
+      </section>
 
       {/* BLOCO 4: VITRINE DE PRODUTOS (GRID) */}
       <section className="pt-8 pb-24 px-8 max-w-7xl mx-auto w-full" style={{ backgroundColor: '#FAF9F6', color: '#171717' }}>
