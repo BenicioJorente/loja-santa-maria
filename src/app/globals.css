@@ -1,22 +1,30 @@
 @import "tailwindcss";
 
-@variant dark (&:is(.dark *));
-
 :root {
-  color-scheme: light;
+  --background: #ffffff !important;
+  --foreground: #171717 !important;
+  color-scheme: light !important;
 }
 
 @theme inline {
-  --color-background: #FAF9F6;
-  --color-foreground: #171717;
+  --color-background: #ffffff !important;
+  --color-foreground: #171717 !important;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 html, body {
-  background-color: #FAF9F6 !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
   color: #171717 !important;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.dark, [data-theme='dark'] {
+  background-color: #ffffff !important;
+  color: #171717 !important;
+  --background: #ffffff !important;
+  --foreground: #171717 !important;
 }
 
 @media (max-width: 768px) {
@@ -93,10 +101,4 @@ html, body {
   .custom-hero-swiper .swiper-pagination-hero .swiper-pagination-bullet-active {
     width: 40px;
   }
-}
-
-.swiper,
-.swiper-wrapper,
-.swiper-slide {
-  background-color: transparent !important;
 }
