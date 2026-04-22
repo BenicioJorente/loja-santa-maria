@@ -6,6 +6,20 @@
   color-scheme: light !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light !important;
+    --background: #ffffff !important;
+    --foreground: #171717 !important;
+  }
+
+  html, body {
+    background-color: #FAF9F6 !important;
+    background: #FAF9F6 !important;
+    color: #171717 !important;
+  }
+}
+
 @theme inline {
   --color-background: #ffffff !important;
   --color-foreground: #171717 !important;
@@ -14,16 +28,16 @@
 }
 
 html, body {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
+  background-color: #FAF9F6 !important;
+  background: #FAF9F6 !important;
   color: #171717 !important;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .dark, [data-theme='dark'] {
-  background-color: #ffffff !important;
+  background-color: #FAF9F6 !important;
   color: #171717 !important;
-  --background: #ffffff !important;
+  --background: #FAF9F6 !important;
   --foreground: #171717 !important;
 }
 
