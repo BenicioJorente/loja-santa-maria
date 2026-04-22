@@ -6,12 +6,27 @@ import { Suspense } from "react";
 import { Metadata } from "next"; 
 import WhatsAppButton from "../components/WhatsAppButton";
 
-// Adicione este bloco de Metadata aqui:
 export const metadata: Metadata = {
   title: "Santa Maria",
-  description: "Curadoria Exclusiva",
+  description: "Santa Maria - feita para mulheres que sabem o seu valor.",
   icons: {
-    icon: "/images/favicon-sm.png", // Caminho para sua pasta public/images
+    icon: "/images/favicon-sm.png", 
+  },
+  openGraph: {
+    title: "Santa Maria",
+    description: "Santa Maria - feita para mulheres que sabem o seu valor.",
+    url: "https://loja-santa-maria.vercel.app/", 
+    siteName: "Santa Maria",
+    images: [
+      {
+        url: "/images/og-image.png", 
+        width: 1200,
+        height: 630,
+        alt: "Santa Maria - Curadoria de Moda",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
   },
 };
 
