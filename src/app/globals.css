@@ -123,3 +123,9 @@ html, body {
     width: 40px;
   }
 }
+
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  background-color: transparent !important;
+}

@@ -71,7 +71,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full mt-0 pt-0">
+    <div className="flex flex-col w-full mt-0 pt-0" style={{ backgroundColor: '#FAF9F6', color: '#171717' }}>
 
       {/* BLOCO 3: CARROSSEL HERO (BANNER PRINCIPAL) */}
       <section className="relative h-[85vh] w-full overflow-hidden bg-white">
@@ -117,7 +117,7 @@ export default function Home() {
       </section>
 
       {/* BLOCO 4: VITRINE DE PRODUTOS (GRID) */}
-      <section className="pt-8 pb-24 px-8 max-w-7xl mx-auto w-full">
+      <section className="pt-8 pb-24 px-8 max-w-7xl mx-auto w-full" style={{ backgroundColor: '#FAF9F6', color: '#171717' }}>
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6 md:gap-4 text-center md:text-left">
           <div>
             <h3 className="font-serif text-3xl italic text-[#1A1A1A]">Destaques</h3>

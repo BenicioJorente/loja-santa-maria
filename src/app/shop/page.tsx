@@ -82,7 +82,7 @@ function ShopClientContent() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-8 pt-4 pb-20">
+    <div className="max-w-7xl mx-auto px-8 pt-4 pb-20" style={{ backgroundColor: '#FAF9F6', color: '#171717' }}>
       <header className="mb-6 text-center">
         <h1 className="font-serif text-4xl mb-4 italic tracking-tight font-light text-[#1A1A1A]">
           Nossa coleção
