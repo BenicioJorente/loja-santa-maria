@@ -1,6 +1,6 @@
-import { 
-  FaInstagram, FaWhatsapp, 
-  FaShieldAlt, FaLock, FaRegCheckCircle, FaCcVisa, FaCcMastercard 
+import {
+  FaInstagram, FaWhatsapp,
+  FaShieldAlt, FaLock, FaRegCheckCircle, FaCcVisa, FaCcMastercard
 } from "react-icons/fa";
 import { SiGooglecloud } from "react-icons/si";
 import { IoMdMail, IoMdTime } from "react-icons/io";
@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-[#FAF9F6] border-t border-zinc-200 py-16 px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16 text-left">
-          
+
           {/* COLUNA 1: ATENDIMENTO */}
           <div className="flex flex-col gap-4">
             <h4 className="font-bold text-[11px] uppercase tracking-[0.2em] text-zinc-800">Atendimento</h4>
@@ -22,17 +22,17 @@ export default function Footer() {
             </div>
             {/* REDES SOCIAIS */}
             <div className="flex gap-5 mt-2">
-              <a 
-                href="https://www.instagram.com/santamariacg" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/santamariacg"
+                target="_blank"
                 rel="noopener noreferrer"
                 title="Instagram Santa Maria"
               >
                 <FaInstagram size={20} className="text-zinc-400 hover:text-black transition cursor-pointer" />
               </a>
-              <a 
-                href="https://wa.me/5567992233599" 
-                target="_blank" 
+              <a
+                href="https://wa.me/5567992233599"
+                target="_blank"
                 rel="noopener noreferrer"
                 title="WhatsApp Santa Maria"
               >
@@ -48,6 +48,8 @@ export default function Footer() {
               <Link href="/" className="hover:text-black transition">Início</Link>
               <Link href="/shop" className="hover:text-black transition">Coleções</Link>
               <Link href="/sobre" className="hover:text-black transition">Sobre Nós</Link>
+              <Link href="/politica-de-privacidade" className="hover:text-black transition">Privacidade</Link>
+              <Link href="/politica-de-trocas" className="hover:text-black transition">Trocas e Devoluções</Link>
             </nav>
           </div>
 
@@ -74,7 +76,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-bold text-[10px] uppercase tracking-0.1em text-zinc-400 mb-3">Formas de Pagamento</h4>
               <div className="flex gap-4 text-zinc-500 items-center">
